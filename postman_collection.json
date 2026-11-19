@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "HemSethu Expense Tracker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000", "type": "string" },
+    { "key": "expenseId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Add Expense",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Lunch\",\n  \"amount\": 150,\n  \"category\": \"Food\",\n  \"date\": \"2026-11-12\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/expenses", "host": ["{{baseUrl}}"], "path": ["api", "expenses"] }
+      }
+    },
+    {
+      "name": "Get All Expenses",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/expenses", "host": ["{{baseUrl}}"], "path": ["api", "expenses"] }
+      }
+    },
+    {
+      "name": "Get Expenses by Category",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/expenses?category=Food",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "expenses"],
+          "query": [{ "key": "category", "value": "Food" }]
+        }
+      }
+    },
+    {
+      "name": "Update Expense",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Team Lunch\",\n  \"amount\": 320,\n  \"category\": \"Food\",\n  \"date\": \"2026-11-12\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/expenses/{{expenseId}}", "host": ["{{baseUrl}}"], "path": ["api", "expenses", "{{expenseId}}"] }
+      }
+    },
+    {
+      "name": "Delete Expense",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "{{baseUrl}}/api/expenses/{{expenseId}}", "host": ["{{baseUrl}}"], "path": ["api", "expenses", "{{expenseId}}"] }
+      }
+    }
+  ]
+}
